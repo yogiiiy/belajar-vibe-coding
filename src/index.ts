@@ -1,5 +1,6 @@
 import { Elysia } from "elysia";
 import { db, users } from "./db";
+import { usersRoute } from "./routes/users-route";
 
 const app = new Elysia()
   .get("/", () => ({ status: "OK", message: "Elysia server is running!" }))
@@ -11,6 +12,7 @@ const app = new Elysia()
       return { success: false, error: error.message };
     }
   })
+  .use(usersRoute)
   .listen(process.env.PORT || 3000);
 
 console.log(
